@@ -62,6 +62,15 @@ def load_iu_traj(filename):
             print "Total Time Missing"
             total_time=0
         else:
+	    print "version is" + line
+            line = f.readline()
+            datalist=re.split(',| |\t',line)[:-1]
+
+        if len(datalist)>1:
+            #Assume header is omitted
+            print "Total Time Missing"
+            total_time=0
+        else:
             total_time=float(datalist[0])
             #line 3 has the step size
             line = f.readline()
@@ -71,7 +80,7 @@ def load_iu_traj(filename):
             print "Time Step is Missing, assuming default..."
             timestep=.1
         else:
-            timestep=datalist[0]
+            timestep=float(datalist[0])
             line = f.readline()
             datalist=re.split(',| |\t',line)[:-1]
 
@@ -379,9 +388,9 @@ if __name__=='__main__':
             forces.save('.'.join(laddername.split('.')[:-2])+timestamp+'_forces.pickle')
     else:
         if raw_input('Hit any key to run simulation or enter to skip:'):
-            recorder.filename='.'.join(laddername.split('.')[:-2])+'_ideal.avi'
-            recorder.realtime=True
-            recorder.start()
+            #trecorder.filename='.'.join(laddername.split('.')[:-2])+'_ideal.avi'
+            #recorder.realtime=True
+            #recorder.start()
             play_traj(robot,dataset,timestep)
 
     #recorder.stop()
