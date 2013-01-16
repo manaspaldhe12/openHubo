@@ -59,7 +59,7 @@ def load_iu_traj(filename):
 
         if len(datalist)>1:
             #Assume header is omitted
-            print "Total Time Missing"
+            print "Version name is Missing"
             total_time=0
         else:
 	    print "version is" + line
